@@ -1,0 +1,10 @@
+
+
+CREATE TABLE hotel(
+    id  IDENTITY NOT NULL PRIMARY KEY, name VARCHAR(255) , location VARCHAR(255)
+);
+
+CREATE TABLE review(
+    id IDENTITY NOT NULL PRIMARY KEY, rating INT NOT NULL, content VARCHAR(255), hotel_id BIGINT NOT NULL,
+     FOREIGN KEY(hotel_id) REFERENCES hotel(id)
+);
