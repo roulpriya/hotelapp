@@ -70,4 +70,13 @@ public class HotelService {
 
         return new ReviewResponse(review.getId(), review.getRating(), review.getContent());
     }
+
+    public HotelResponse update(Long hotelId, HotelRequest request) {
+        var hotel = hotelRepository.findById(hotelId).orElseThrow(HotelNotFoundException::new);
+        hotel = new Hotel(request.getName(), request.getLocation());
+        hotelRepository.save(hotel);
+        return new HotelResponse(hotel.getId(), hotel.getName(), hotel.getLocation());
+
+
+    }
 }

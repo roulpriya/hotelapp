@@ -1,5 +1,8 @@
 package com.example.hotelreview.dto;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
+@JacksonXmlRootElement(localName = "hotel")
 public class HotelResponse {
 
     private final Long id;

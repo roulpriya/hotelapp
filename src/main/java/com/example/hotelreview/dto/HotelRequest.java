@@ -1,7 +1,12 @@
 package com.example.hotelreview.dto;
 
+import com.example.hotelreview.models.Hotel;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import javax.validation.constraints.NotBlank;
 
+
+@JacksonXmlRootElement(localName = "hotel")
 public class HotelRequest {
 
     @NotBlank

@@ -1,9 +1,12 @@
 package com.example.hotelreview.dto;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
+@JacksonXmlRootElement(localName = "review")
 public class ReviewRequest {
 
     @Min(1)
