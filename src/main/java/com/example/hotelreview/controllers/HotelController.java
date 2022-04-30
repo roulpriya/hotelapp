@@ -45,5 +45,11 @@ public class HotelController {
         return ResponseEntity.ok(hotelService.update(id, request));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HotelResponse> deleteById(@PathVariable Long id){
+        return ResponseEntity.of(hotelService.deleteById(id));
+    }
+
+
 }
 

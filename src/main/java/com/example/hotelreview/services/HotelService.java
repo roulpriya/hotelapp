@@ -79,4 +79,9 @@ public class HotelService {
 
 
     }
+
+    public Optional<HotelResponse> deleteById(Long id) {
+        return hotelRepository.findById(id)
+                .map(hotel -> new HotelResponse(hotel.getId(), hotel.getName(), hotel.getLocation()));
+    }
 }
