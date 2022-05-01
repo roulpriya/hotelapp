@@ -11,6 +11,7 @@ import com.example.hotelreview.repositories.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -72,7 +73,7 @@ public class HotelService {
     }
 
     public HotelResponse update(Long hotelId, HotelRequest request) {
-        var hotel = hotelRepository.findById(hotelId).orElseThrow(HotelNotFoundException::new);
+        var hotel = hotelRepository.findById(hotelId).orElseThrow(ReviewNotFoundException::new);
         hotel = new Hotel(request.getName(), request.getLocation());
         hotelRepository.save(hotel);
         return new HotelResponse(hotel.getId(), hotel.getName(), hotel.getLocation());
@@ -80,8 +81,9 @@ public class HotelService {
 
     }
 
-    public Optional<HotelResponse> deleteById(Long id) {
-        return hotelRepository.findById(id)
-                .map(hotel -> new HotelResponse(hotel.getId(), hotel.getName(), hotel.getLocation()));
+    public void delete(Long hotelId) {
+        var hotel = hotelRepository.findById(hotelId).orElseThrow(HotelNotFoundException::new);
+        hotelRepository.delete(hotel);
     }
+
 }

@@ -9,5 +9,6 @@ public class HotelNotFoundException extends ResponseStatusException {
     public HotelNotFoundException() {
         super(HttpStatus.NOT_FOUND, "Hotel Not Found");
     }
+
 }
 

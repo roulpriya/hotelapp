@@ -5,7 +5,6 @@ import com.example.hotelreview.dto.HotelResponse;
 import com.example.hotelreview.dto.PaginatedResponse;
 import com.example.hotelreview.services.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,10 +45,9 @@ public class HotelController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<HotelResponse> deleteById(@PathVariable Long id){
-        return ResponseEntity.of(hotelService.deleteById(id));
+    public void delete(@PathVariable Long id) {
+        this.hotelService.delete(id);
     }
-
 
 }
 
