@@ -38,7 +38,15 @@ public class ReviewController {
 
     }
 
+    @PutMapping("/hotels/{hotelId}/reviews")
+    public ResponseEntity<ReviewResponse> updateReview(@PathVariable Long hotelId, @RequestBody @Valid ReviewRequest request) {
+        return ResponseEntity.ok(hotelService.updateReview(hotelId, request));
+    }
 
+    @DeleteMapping("/hotels/{hotelId}/{id}/reviews")
+    public void deleteReview(@PathVariable Long hotelId,@PathVariable Long id) {
+        this.hotelService.deleteReview(hotelId, id);
+    }
 
 }
 

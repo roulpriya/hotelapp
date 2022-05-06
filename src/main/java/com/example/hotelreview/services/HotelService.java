@@ -72,6 +72,14 @@ public class HotelService {
         return new ReviewResponse(review.getId(), review.getRating(), review.getContent());
     }
 
+    public ReviewResponse updateReview(Long hotelId, ReviewRequest request) {
+        var hotel = hotelRepository.findById(hotelId).orElseThrow(ReviewNotFoundException::new);
+        Review review = new Review(request.getRating(), request.getContent(), hotel);
+        reviewRepository.save(review);
+        return new ReviewResponse(review.getId(), review.getRating(), review.getContent());
+
+    }
+
     public HotelResponse update(Long hotelId, HotelRequest request) {
         var hotel = hotelRepository.findById(hotelId).orElseThrow(ReviewNotFoundException::new);
         hotel = new Hotel(request.getName(), request.getLocation());
@@ -81,9 +89,16 @@ public class HotelService {
 
     }
 
+
     public void delete(Long hotelId) {
         var hotel = hotelRepository.findById(hotelId).orElseThrow(HotelNotFoundException::new);
         hotelRepository.delete(hotel);
+    }
+
+    public void deleteReview(Long hotelId, Long id) {
+        var hotel = hotelRepository.findById(hotelId).orElseThrow(HotelNotFoundException::new);
+        var review = reviewRepository.findById(id).orElseThrow(ReviewNotFoundException::new);
+        reviewRepository.delete(review);
     }
 
 }

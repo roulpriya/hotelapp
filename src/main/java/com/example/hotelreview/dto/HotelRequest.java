@@ -40,4 +40,6 @@ public class HotelRequest {
     public int hashCode() {
         return Objects.hash(name, location);
     }
+
+
 }
